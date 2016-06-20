@@ -13,12 +13,21 @@ class IdGamesApi {
     ));
 
     try {
-      return curl_exec($this->curl);
+      $success = curl_exec($this->curl);
+      if($success) {
+        return $success;
+      } else {
+        $error_num = curl_errno();
+        $error_msg = curl_error();
+        echo "Curl Error Number: $error_num\nCurl Error: $error_msg";
+        return FALSE;
+      }
     } catch (Exception $e) {
-      echo "Error: {$e->getMessage()}\n";
+      echo "Exception: {$e->getMessage()}\n";
       return FALSE;
     } finally {
       curl_close($this->curl);
     }
   }
+
 }
