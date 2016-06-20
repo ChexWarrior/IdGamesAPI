@@ -3,7 +3,7 @@ class IdGamesApi {
   private $curl = null;
   private $endpoint = 'http://www.doomworld.com/idgames/api/api.php';
 
-  public function ping($format = 'json') {
+  public function pingServer($format = 'json') {
     $this->curl = curl_init();
     $url = "$this->endpoint?action=ping&out=$format";
     
