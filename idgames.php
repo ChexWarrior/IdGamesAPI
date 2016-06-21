@@ -8,13 +8,14 @@ class IdGamesApi {
     foreach ($options as $name => $value) {
       $url .= "&$name=$value";
     }
+
     return $url;
   }
 
   public function pingServer($format = 'json') {
     $this->curl = curl_init();
-    $url = createUrl('ping', array(
-      'format' => $format
+    $url = $this->createUrl('ping', array(
+      'out' => $format
     ));
     
     curl_setopt_array($this->curl, array(
