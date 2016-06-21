@@ -12,6 +12,13 @@ class IdGamesApi {
     return $url;
   }
 
+  private function getCurlError($curl) {
+    $error_num = curl_errno($curl);
+    $error_msg = curl_error($curl);
+    
+    return "Curl Error Number: $error_num\nCurl Error: $error_msg";
+  }
+
   public function pingServer($format = 'json') {
     $this->curl = curl_init();
     $url = $this->createUrl('ping', array(
