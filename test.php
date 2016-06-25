@@ -6,7 +6,7 @@ echo "Ping Server Response: ";
 echo $api->pingServer();
 echo "DB Ping Server Response: ";
 echo $api->pingDBServer();
-echo "Get API Info: "
+echo "Get API Info: ";
 echo $api->getApiInfo();
 echo "Get File by ID: ";
 echo $api->getFileById(3);
