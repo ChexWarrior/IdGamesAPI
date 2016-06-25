@@ -98,5 +98,64 @@ class IdGamesApi {
     } finally {
       curl_close($this->curl);
     }
-  } 
+  }
+
+  public function getFileById($id, $format = 'json') {
+    $this->curl = curl_init();
+
+    $url = $this->createUrl('get', array(
+      'id' => $id,
+      'out' => $format,
+    ));
+
+    curl_setopt_array($this->curl, array(
+      CURLOPT_RETURNTRANSFER => 1,
+      CURLOPT_URL => $url
+    ));
+
+    try {
+      $success = curl_exec($this->curl);
+      if($success) {
+        return $success;
+      } else {
+        echo $this->getCurlError($this->curl);
+        return FALSE;
+      }
+    } catch (Exception $e) {
+      echo "Exception: {$e->getMessage()}\n";
+      return FALSE;
+    } finally {
+      curl_close($this->curl);
+    }
+  }
+
+  public function getFileByPath($path, $format = 'json') {
+    $this->curl = curl_init();
+
+    $url = $this->createUrl('get', array(
+      'file' => $path,
+      'out' => $format,
+    ));
+
+    curl_setopt_array($this->curl, array(
+      CURLOPT_RETURNTRANSFER => 1,
+      CURLOPT_URL => $url
+    ));
+
+    try {
+      $success = curl_exec($this->curl);
+      if($success) {
+        return $success;
+      } else {
+        echo $this->getCurlError($this->curl);
+        return FALSE;
+      }
+    } catch (Exception $e) {
+      echo "Exception: {$e->getMessage()}\n";
+      return FALSE;
+    } finally {
+      curl_close($this->curl);
+    }
+  }
+
 }
